@@ -1,0 +1,57 @@
+#me {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+#me_header {
+    display: flex;
+    flex-direction: column;
+}
+
+#me_header_greeting {
+    color: #333;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    font-family: monospace;
+
+}
+
+#me_header_name {
+    color: #333;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#me_details {
+    display: flex;
+    gap: 40px;
+}
+
+#me_details_table {
+    text-align: left;
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #EAEAEA;
+}
+
+#me_details_table th {
+    padding: 10px;
+}
+
+#me_details_table td {
+    padding: 10px;
+}
+
+#me_details_graph span {
+    color: #333;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

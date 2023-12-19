@@ -1,0 +1,57 @@
+#review_test_question {
+    padding: 20px 40px 20px 40px;
+}
+
+#review_test_question_head span {
+    color: #333;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+#review_question_number {
+    display: flex;
+    align-items: center;
+}
+
+#review_question_level {
+    background-color: #16a34a;
+    margin: 0px 10px 0px 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FFF;
+    font-size: 0.7rem;
+}
+
+#review_test_question_options {
+    margin: 40px 20px 20px 20px;
+}
+
+.review_test_question_option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 10px 0;
+}
+
+#review_question_correct {
+    color: #16a34a;
+    font-weight: 900;
+}
+
+#review_question_wrong {
+    color: #dc2626;
+    font-weight: 900;
+}
+
+#marks_alloted {
+    display: flex;
+    justify-content: end;
+    color: #333;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}

@@ -1,0 +1,60 @@
+#answer {
+    padding: 40px;
+}
+
+#answer_head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#answer_head span {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#answer_main {
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+}
+
+#report_card {
+    background-color: #FFF;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+#report_card_table {
+    text-align: left;
+}
+
+#marks {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #16a34a;
+    border-radius: 100%;
+    border-style: double;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#marks span {
+    color: #000;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#qna {
+    background-color: white;
+    border-radius: 20px;
+}
