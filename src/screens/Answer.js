@@ -24,16 +24,18 @@ const Answer = () => {
                             </div>
                             <div>
                                 <table id='report_card_table'>
-                                    <tr>
-                                        <th>Percentile</th>
-                                        <td>83.56%</td>
-                                    </tr>
-                                    <tr>
-                                        <th>🙂</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Good</th>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th>Percentile</th>
+                                            <td>83.56%</td>
+                                        </tr>
+                                        <tr>
+                                            <th>🙂</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Good</th>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
