@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
-import './Login.css'
 import logo from '../assets/rnsit_logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import useApiRequest from '../hooks/useApiRequest'
 import { STUDENT_LOGIN } from '../api/student'
 import toast from 'react-hot-toast'
 import AuthContext from '../context/AuthContext'
+import { RiLoader4Line } from "react-icons/ri"
 
 const Login = () => {
 
@@ -48,24 +48,25 @@ const Login = () => {
     return (
         <>
             <Header />
-            <div>
-                <div id='login_wrap'>
-                    <div id='login'>
-                        <div id='login_top'>
-                            <img src={logo} alt='rnsit' />
-                            <span>Login</span>
-                        </div>
-                        <form id='login_bottom' onSubmit={handleLogin}>
-                            <input id='login_usn' type='text' placeholder='1RN22CS170' value={usn} onChange={(e) => setUsn(e.target.value)} required />
-                            <input id='login_password' type='password' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
-                            <button id='login_btn' >
-                                {
-                                    loading ? 'loading...' : 'Login'
-                                }
-                            </button>
-                        </form>
-                        <Link id='forgot_password' to='/forgot-password'>forgot password?</Link>
+            <div className='flex justify-center  items-center mt-28'>
+                <div className='bg-white shadow rounded-xl flex flex-col p-5 gap-10'>
+                    <div className='flex items-center font-extrabold text-xl text-black'>
+                        <img src={logo} alt='rnsit' className='w-32' />
+                        <span>Login</span>
                     </div>
+                    <form className='flex flex-col justify-center items-center font-extrabold min-w-80 gap-5' onSubmit={handleLogin}>
+                        <input className='w-full bg-slate-50 outline-none p-2 rounded-lg border border-slate-500' type='text' placeholder='1RN22CS170' value={usn} onChange={(e) => setUsn(e.target.value)} required />
+                        <input className='w-full bg-slate-50 outline-none p-2 rounded-lg border border-slate-500' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <button className='bg-blue-900 text-white shadow w-full py-2 rounded-lg border border-slate-500 flex items-center justify-center' >
+                            {
+                                loading ?
+                                    <RiLoader4Line className='font-extrabold animate-spin' size={25} />
+                                    :
+                                    <span>Login</span>
+                            }
+                        </button>
+                    </form>
+                    <Link id='forgot_password' to='/forgot-password'>forgot password?</Link>
                 </div>
             </div>
         </>
