@@ -46,9 +46,9 @@ const Login = () => {
     }, [data])
 
     return (
-        <>
-            <Header />
-            <div className='flex justify-center  items-center mt-28'>
+        <div className='p-2'>
+            <span className='text-black font-extrabold text-4xl'>College Test Portal</span>
+            <div className='flex flex-col justify-center items-center mt-24'>
                 <div className='bg-white shadow rounded-xl flex flex-col p-5 gap-10'>
                     <div className='flex items-center font-extrabold text-xl text-black'>
                         <img src={logo} alt='rnsit' className='w-32' />
@@ -69,7 +69,7 @@ const Login = () => {
                     <Link id='forgot_password' to='/forgot-password'>forgot password?</Link>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

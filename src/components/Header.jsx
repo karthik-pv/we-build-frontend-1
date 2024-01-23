@@ -1,8 +1,19 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { GoArrowRight } from "react-icons/go"
+import AuthContext from '../context/AuthContext'
 
 const Header = () => {
+
+    const navigate = useNavigate()
+
+    const { setAuthToken } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        setAuthToken(null)
+        navigate('/login')
+    }
+
     return (
         <div className='flex flex-row justify-between items-center p-2'>
             <span className='text-black font-extrabold text-4xl'>College Test Portal</span>
@@ -22,7 +33,7 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-            <button className='flex items-center gap-1 text-red-600 font-extrabold'>
+            <button className='flex items-center gap-1 text-red-600 font-extrabold' onClick={handleLogout}>
                 logout<GoArrowRight />
             </button>
         </div>
