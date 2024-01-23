@@ -1,16 +1,15 @@
 import React from 'react'
-import './TestCard.css'
 
 const TestCard = () => {
     return (
-        <div id='test_card'>
-            <div id='test_card_top'>
-                <span id='test_card_top_sub_name'>Principles Of Programming</span>
-                <span id='test_card_top_sub_code'>BPOP203</span>
-                <span id='test_card_top_sub_id'>#6389</span>
+        <div className='bg-white flex flex-col gap-5 p-2 m-4 shadow rounded-lg'>
+            <div className='flex flex-col'>
+                <span className='font-extrabold'>Principles Of Programming</span>
+                <span className='font-extrabold'>BPOP203</span>
+                <span className='font-extrabold'>#6389</span>
             </div>
-            <div id='test_card_bottom'>
-                <table id='test_details'>
+            <div className='flex justify-between items-end'>
+                <table className='text-left'>
                     <tbody>
                         <tr>
                             <th>Date</th>
@@ -26,7 +25,7 @@ const TestCard = () => {
                         </tr>
                     </tbody>
                 </table>
-                <button id='test_card_start_btn'>Start</button>
+                <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold'>Start</button>
             </div>
         </div>
     )
