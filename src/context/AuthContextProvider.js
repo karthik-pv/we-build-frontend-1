@@ -3,11 +3,7 @@ import AuthContext from './AuthContext'
 
 const AuthContextProvider = ({ children }) => {
 
-    const [authToken, setAuthToken] = useState(sessionStorage.getItem('AuthToken'))
-
-    useEffect(() => {
-        sessionStorage.setItem('AuthToken', authToken)
-    }, [authToken])
+    const [authToken, setAuthToken] = useState(sessionStorage.getItem('AuthToken') ? sessionStorage.getItem('AuthToken') : null)
 
     return (
         <AuthContext.Provider value={{ authToken, setAuthToken }}>

@@ -40,6 +40,7 @@ const Login = () => {
     useEffect(() => {
         if (data) {
             setAuthToken(data?.token)
+            sessionStorage.setItem('AuthToken', data?.token)
             toast.success('Logged in successfully.')
             navigate('/')
         }

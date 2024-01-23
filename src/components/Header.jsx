@@ -11,6 +11,7 @@ const Header = () => {
 
     const handleLogout = () => {
         setAuthToken(null)
+        sessionStorage.removeItem('AuthToken')
         navigate('/login')
     }
 
