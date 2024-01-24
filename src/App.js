@@ -8,6 +8,7 @@ import History from './screens/History'
 import Answer from './screens/Answer'
 import { Toaster } from 'react-hot-toast'
 import AuthContext from './context/AuthContext'
+import Ask from './screens/Ask'
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='/tests/:id' element={authToken ? <Test /> : <Navigate to='/login' />} />
         <Route path='/history' element={authToken ? <History /> : <Navigate to='/login' />} />
         <Route path='/history/:id' element={authToken ? <Answer /> : <Navigate to='/login' />} />
+        <Route path='/ask' element={authToken ? <Ask /> : <Navigate to='/login' />} />
         <Route path='/login' element={<Login />} />
       </Routes>
       <Toaster position='bottom-center' />
