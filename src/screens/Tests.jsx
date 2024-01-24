@@ -11,7 +11,7 @@ const Tests = () => {
                     <span className='text-black font-extrabold text-3xl'>#Tests</span>
                     <input className='outline-none shadow rounded-lg p-2 w-80' type='text' placeholder='search' />
                 </div>
-                <div className='pt-10 flex flex-wrap'>
+                <div className='flex flex-wrap'>
                     <TestCard />
                     <TestCard />
                 </div>
