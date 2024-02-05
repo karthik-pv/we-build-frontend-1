@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import useApiRequest from '../hooks/useApiRequest'
 import { SUBJECT_GET } from '../api/subject'
+import { Link } from 'react-router-dom'
 
 const TestCard = ({ test }) => {
 
@@ -42,7 +43,9 @@ const TestCard = ({ test }) => {
                         </tr>
                     </tbody>
                 </table>
-                <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold'>Start</button>
+                <Link to={'/tests/passcode/' + test?._id}>
+                    <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold'>Start</button>
+                </Link>
             </div>
         </div>
     )

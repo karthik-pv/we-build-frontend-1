@@ -9,6 +9,7 @@ import Answer from './screens/Answer'
 import { Toaster } from 'react-hot-toast'
 import AuthContext from './context/AuthContext'
 import Ask from './screens/Ask'
+import TestPrerequisite from './screens/TestPrerequisite'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={authToken ? <Me /> : <Navigate to='/login' />} />
         <Route path='/tests' element={authToken ? <Tests /> : <Navigate to='/login' />} />
+        <Route path='/tests/passcode/:id' element={authToken ? <TestPrerequisite /> : <Navigate to='/login' />} />
         <Route path='/tests/:id' element={authToken ? <Test /> : <Navigate to='/login' />} />
         <Route path='/history' element={authToken ? <History /> : <Navigate to='/login' />} />
         <Route path='/history/:id' element={authToken ? <Answer /> : <Navigate to='/login' />} />
