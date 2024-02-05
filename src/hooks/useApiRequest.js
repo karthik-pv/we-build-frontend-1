@@ -1,11 +1,14 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
+import AuthContext from '../context/AuthContext'
 
 const useApiRequest = (config) => {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
+
+    const { logout } = useContext(AuthContext)
 
     const fetch = async () => {
         try {
@@ -16,6 +19,10 @@ const useApiRequest = (config) => {
             if (error.code === "ERR_NETWORK") {
                 toast.error(error.message)
                 return
+            }
+            if (error?.response?.status === 403) {
+                toast.error(error?.response?.data?.message)
+                logout()
             }
             setError(error)
         } finally {

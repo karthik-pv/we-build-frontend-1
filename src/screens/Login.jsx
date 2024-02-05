@@ -56,7 +56,7 @@ const Login = () => {
                         <span>Login</span>
                     </div>
                     <form className='flex flex-col justify-center items-center font-extrabold min-w-80 gap-5' onSubmit={handleLogin}>
-                        <input className='w-full bg-slate-50 outline-none p-2 rounded-lg border border-slate-500' type='text' placeholder='1RN22CS170' value={usn} onChange={(e) => setUsn(e.target.value)} required />
+                        <input className='w-full bg-slate-50 outline-none p-2 rounded-lg border border-slate-500' type='text' placeholder='1RN22CS170' value={usn} onChange={(e) => setUsn(e.target.value.toUpperCase())} required />
                         <input className='w-full bg-slate-50 outline-none p-2 rounded-lg border border-slate-500' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                         <button className='bg-blue-900 text-white shadow w-full py-2 rounded-lg border border-slate-500 flex items-center justify-center' >
                             {

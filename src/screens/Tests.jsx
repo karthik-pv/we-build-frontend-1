@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import useApiRequest from '../hooks/useApiRequest'
 import AuthContext from '../context/AuthContext'
 import { TEST_GET } from '../api/test'
+import { RiLoader4Line } from "react-icons/ri"
 
 const Tests = () => {
 
@@ -15,13 +16,15 @@ const Tests = () => {
         headers: {
             token: authToken
         },
-        body: {}
+        data: {
+            // not working...
+        }
     })
 
     useEffect(() => {
         fetch()
     }, [])
-
+    // console.log(data, error)
     return (
         <>
             <Header />
@@ -30,15 +33,28 @@ const Tests = () => {
                     <span className='text-black font-extrabold text-3xl'>#Tests</span>
                     <input className='outline-none shadow rounded-lg p-2 w-80' type='text' placeholder='search' />
                 </div>
-                {
-                    loading && <span className='text-black font-extrabold text-3xl'>Loading...</span>
-                }
-                {
-                    error && <span>Somthing went wrong</span>
-                }
-                <div className='flex flex-wrap'>
-                    <TestCard />
-                    <TestCard />
+                <div>
+                    {
+                        loading ?
+                            <div className='flex items-center justify-center mt-40'>
+                                <RiLoader4Line className='font-extrabold animate-spin' size={25} />
+                                <span className='text-black text-2xl'>Loading...</span>
+                            </div>
+                            :
+                            error ?
+                                <div className='flex items-center justify-center mt-40'>
+                                    <span className='font-mono font-bold'>Error: {error?.response?.data?.message}</span>
+                                </div>
+                                :
+                                data && <div className='flex flex-wrap'>
+                                    {
+                                        data?.map(test => {
+                                            return <TestCard test={test} key={test?._id} />
+                                        })
+                                    }
+                                </div>
+
+                    }
                 </div>
             </div >
         </>

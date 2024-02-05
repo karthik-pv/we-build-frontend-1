@@ -7,13 +7,7 @@ const Header = () => {
 
     const navigate = useNavigate()
 
-    const { setAuthToken } = useContext(AuthContext)
-
-    const handleLogout = () => {
-        setAuthToken(null)
-        sessionStorage.removeItem('AuthToken')
-        navigate('/login')
-    }
+    const { logout } = useContext(AuthContext)
 
     return (
         <div className='flex flex-row justify-between items-center p-2'>
@@ -34,7 +28,7 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-            <button className='flex items-center gap-1 text-red-600 font-extrabold' onClick={handleLogout}>
+            <button className='flex items-center gap-1 text-red-600 font-extrabold' onClick={logout}>
                 logout<GoArrowRight />
             </button>
         </div>
