@@ -1,27 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import useApiRequest from '../hooks/useApiRequest'
+import { SUBJECT_GET } from '../api/subject'
 
-const TestCard = () => {
+const TestCard = ({ test }) => {
+
+    const { fetch, data, error, loading } = useApiRequest({
+        method: 'get',
+        url: SUBJECT_GET + `${test?.subject}`
+    })
+
+    useEffect(() => {
+        fetch()
+    }, [])
+
     return (
-        <div className='bg-white flex flex-col gap-5 p-2 m-4 shadow rounded-lg w-80'>
+        <div className='bg-white flex flex-col gap-5 p-2 m-4 shadow rounded-lg'>
             <div className='flex flex-col'>
-                <span className='font-extrabold'>#6389h231r9bn8t6nbr</span>
-                <span className='font-extrabold'>Principles Of Programming</span>
-                <span className='font-extrabold'>BPOP203</span>
+                {
+                    loading && <span>loading...</span>
+                }
+                {
+                    error ?
+                        <span>Somthing went wrong [subject: {test?.subject}]</span>
+                        :
+                        <>
+                            <span className='font-extrabold'>{data?.subjectName}</span>
+                            <span className='font-extrabold'>{data?.subjectCode}</span>
+                        </>
+                }
             </div>
             <div className='flex justify-between items-end'>
                 <table className='text-left'>
                     <tbody>
                         <tr>
-                            <th>Date</th>
-                            <td className='px-2'>23 11 2023</td>
+                            <th>Starting Date:</th>
+                            <td className='px-2'>{new Date(test?.startTime).toLocaleString()}</td>
                         </tr>
                         <tr>
-                            <th>Start</th>
-                            <td className='px-2'>11:30</td>
-                        </tr>
-                        <tr>
-                            <th>End</th>
-                            <td className='px-2'>12:30</td>
+                            <th>End Date:</th>
+                            <td className='px-2'>{new Date(test?.endTime).toLocaleString()}</td>
                         </tr>
                     </tbody>
                 </table>

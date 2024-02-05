@@ -24,7 +24,7 @@ const Tests = () => {
     useEffect(() => {
         fetch()
     }, [])
-    // console.log(data, error)
+
     return (
         <>
             <Header />
