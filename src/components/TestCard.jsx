@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useApiRequest from '../hooks/useApiRequest'
 import { SUBJECT_GET } from '../api/subject'
-import { Link } from 'react-router-dom'
+import ModalContext from '../context/ModalContext'
+import Passkey from './Passkey'
 
 const TestCard = ({ test }) => {
+
+    const [passKey, setPassKey] = useState('')
 
     const { fetch, data, error, loading } = useApiRequest({
         method: 'get',
@@ -13,6 +16,8 @@ const TestCard = ({ test }) => {
     useEffect(() => {
         fetch()
     }, [])
+
+    const { setComponent, setShow } = useContext(ModalContext)
 
     return (
         <div className='bg-white flex flex-col gap-5 p-2 m-4 shadow rounded-lg'>
@@ -43,9 +48,12 @@ const TestCard = ({ test }) => {
                         </tr>
                     </tbody>
                 </table>
-                <Link to={'/tests/passcode/' + test?._id}>
-                    <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold'>Start</button>
-                </Link>
+
+                <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold' onClick={() => {
+                    setComponent(<Passkey setPassKey={setPassKey} passKey={passKey} />)
+                    setShow(true)
+                }}>Start</button>
+
             </div>
         </div>
     )

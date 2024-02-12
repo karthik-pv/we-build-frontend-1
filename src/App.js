@@ -9,6 +9,7 @@ import Answer from './screens/Answer'
 import { Toaster } from 'react-hot-toast'
 import AuthContext from './context/AuthContext'
 import Ask from './screens/Ask'
+import Modal from './components/Modal'
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/login' element={<Login />} />
       </Routes>
       <Toaster position='bottom-center' />
+      <Modal />
     </>
   )
 }
