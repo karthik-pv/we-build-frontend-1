@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import ModalContext from '../context/ModalContext'
 import Passkey from './Passkey'
 
 const TestCard = ({ test }) => {
-
-    const [passKey, setPassKey] = useState('')
 
     const { open } = useContext(ModalContext)
 
@@ -29,7 +27,7 @@ const TestCard = ({ test }) => {
                 </table>
 
                 <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold' onClick={() => {
-                    open(<Passkey setPassKey={setPassKey} passKey={passKey} />)
+                    open(<Passkey testId={test?._id} />)
                 }}>Start</button>
 
             </div>
