@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const AuthContextProvider = ({ children }) => {
 
-    const [authToken, setAuthToken] = useState(sessionStorage.getItem('AuthToken') ? sessionStorage.getItem('AuthToken') : null)
+    const [authToken, setAuthToken] = useState(sessionStorage.getItem('AuthToken'))
 
     const navigate = useNavigate()
 
