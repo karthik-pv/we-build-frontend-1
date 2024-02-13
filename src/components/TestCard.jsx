@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import useApiRequest from '../hooks/useApiRequest'
-import { SUBJECT_GET } from '../api/subject'
 import ModalContext from '../context/ModalContext'
 import Passkey from './Passkey'
 
@@ -8,32 +6,13 @@ const TestCard = ({ test }) => {
 
     const [passKey, setPassKey] = useState('')
 
-    const { fetch, data, error, loading } = useApiRequest({
-        method: 'get',
-        url: SUBJECT_GET + `${test?.subject}`
-    })
-
-    useEffect(() => {
-        fetch()
-    }, [])
-
     const { open } = useContext(ModalContext)
 
     return (
         <div className='bg-white flex flex-col gap-5 p-2 m-4 shadow rounded-lg'>
             <div className='flex flex-col'>
-                {
-                    loading && <span>loading...</span>
-                }
-                {
-                    error ?
-                        <span>Somthing went wrong [subject: {test?.subject}]</span>
-                        :
-                        <>
-                            <span className='font-extrabold'>{data?.subjectName}</span>
-                            <span className='font-extrabold'>{data?.subjectCode}</span>
-                        </>
-                }
+                <span className='font-extrabold'>{test?.subject?.subjectName}</span>
+                <span className='font-extrabold'>{test?.subject?.subjectCode}</span>
             </div>
             <div className='flex justify-between items-end'>
                 <table className='text-left'>

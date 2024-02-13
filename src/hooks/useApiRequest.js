@@ -20,10 +20,6 @@ const useApiRequest = (config) => {
                 toast.error(error.message)
                 return
             }
-            // if (error?.response?.status === 403) {
-            //     toast.error(error?.response?.data?.message)
-            //     logout()
-            // }
             setError(error)
         } finally {
             setLoading(false)
