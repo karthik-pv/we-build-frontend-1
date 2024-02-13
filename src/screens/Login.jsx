@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Header from '../components/Header'
 import logo from '../assets/rnsit_logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import useApiRequest from '../hooks/useApiRequest'
