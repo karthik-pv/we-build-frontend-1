@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
-import useApiRequest from '../hooks/useApiRequest'
 import { STUDENT_INFO } from '../api/student'
 import AuthContext from '../context/AuthContext'
 import { RiLoader4Line } from "react-icons/ri"

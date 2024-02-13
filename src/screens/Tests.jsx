@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import TestCard from '../components/TestCard'
 import Header from '../components/Header'
-import useApiRequest from '../hooks/useApiRequest'
 import AuthContext from '../context/AuthContext'
 import { TEST_GET } from '../api/test'
 import { RiLoader4Line } from "react-icons/ri"
-import { SUBJECT_FILTER, SUBJECT_GET } from '../api/subject'
+import { SUBJECT_GET } from '../api/subject'
 import axios from 'axios'
 
 const Tests = () => {
