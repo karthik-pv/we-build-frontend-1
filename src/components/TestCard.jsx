@@ -17,7 +17,7 @@ const TestCard = ({ test }) => {
         fetch()
     }, [])
 
-    const { setComponent, setShow } = useContext(ModalContext)
+    const { open } = useContext(ModalContext)
 
     return (
         <div className='bg-white flex flex-col gap-5 p-2 m-4 shadow rounded-lg'>
@@ -50,8 +50,7 @@ const TestCard = ({ test }) => {
                 </table>
 
                 <button className='bg-blue-900 text-white py-1 px-4 rounded font-bold' onClick={() => {
-                    setComponent(<Passkey setPassKey={setPassKey} passKey={passKey} />)
-                    setShow(true)
+                    open(<Passkey setPassKey={setPassKey} passKey={passKey} />)
                 }}>Start</button>
 
             </div>

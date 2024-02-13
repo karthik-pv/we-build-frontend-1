@@ -4,15 +4,14 @@ import { IoClose } from 'react-icons/io5'
 
 const Modal = () => {
 
-    const { show, setShow, component, setComponent } = useContext(ModalContext)
+    const { show, component, close } = useContext(ModalContext)
 
     if (!show) return
 
     return (
         <div className='absolute bg-white shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5'>
             <IoClose className='cursor-pointer' onClick={() => {
-                setShow(false)
-                setComponent(null)
+                close()
             }} />
             {component}
         </div>
