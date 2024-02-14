@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Question = ({ question }) => {
+const Question = ({ question, answer, handleAnswer }) => {
     return (
         <div>
             <div>
@@ -12,8 +12,11 @@ const Question = ({ question }) => {
                 {
                     question?.options.map((option, index) => {
                         return <li key={index}>
+                            <span>{answer.includes(index)}</span>
                             <div className='flex items-center gap-2 my-2'>
-                                <input type='radio' name='question' />
+                                <input className='cursor-pointer' type='radio' name='option' value={index} checked={answer?.includes(index)} onChange={() => {
+                                    handleAnswer(index)
+                                }} />
                                 <p>{option}</p>
                             </div>
                         </li>

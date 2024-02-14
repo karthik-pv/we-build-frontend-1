@@ -15,7 +15,7 @@ const Passkey = ({ testId }) => {
     const [passKey, setPassKey] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const [cookie, setCookie] = useCookies(['TestToken', 'Questions'])
+    const [cookie, setCookie] = useCookies(['TestToken'])
 
     const { authToken } = useContext(AuthContext)
     const { close } = useContext(ModalContext)
@@ -42,7 +42,7 @@ const Passkey = ({ testId }) => {
 
             }
 
-            setCookie('Questions', questions, { expires: new Date(test.data?.test?.endTime) })
+            localStorage.setItem('questions', JSON.stringify(questions))
 
             navigate('/tests/' + testId)
 

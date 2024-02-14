@@ -1,21 +1,87 @@
 import React, { useEffect, useState } from 'react'
 import Question from '../components/Question'
 import { useNavigate, useParams } from 'react-router'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
+import { TEST_FINISH } from '../api/test'
+import { RiLoader4Line } from 'react-icons/ri'
 
 const Test = () => {
 
     const navigate = useNavigate()
-    const id = useParams()
-    const [test, setTest] = useState(null)
+
+    const [cookie, setCookie, removeCookie] = useCookies(['TestToken'])
+
+    const questions = JSON.parse(localStorage.getItem('questions'))
+
     const [questionIndex, setQuestionIndex] = useState(0)
+    const [answer, setAnswer] = useState(questions[questionIndex]?.answer)
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
-        const test = JSON.parse(localStorage.getItem('Test'))
-        setTest(test)
+        const testToken = cookie.TestToken
+
+        if (!testToken) {
+            return navigate('/')
+        }
+
     }, [])
 
-    if (!test) {
-        return navigate('/')
+    useEffect(() => {
+
+        setAnswer(questions[questionIndex]?.answer)
+
+    }, [questionIndex])
+
+    const handleAnswer = (option) => {
+
+        setAnswer([option])
+
+        const questions = JSON.parse(localStorage.getItem('questions'))
+
+        for (let q of questions) {
+
+            if (q.question._id === questions[questionIndex]?.question._id) {
+
+                q.answer = [option]
+
+            }
+
+        }
+
+        localStorage.setItem('questions', JSON.stringify(questions))
+    }
+
+    const submitAnswer = async () => {
+
+        setLoading(true)
+
+        try {
+
+            const submit = await axios.post(TEST_FINISH, { questions }, {
+                headers: {
+                    token: cookie.TestToken
+                }
+            })
+
+            console.log(submit.data)
+
+            localStorage.removeItem('questions')
+            removeCookie('TestToken')
+
+        } catch (error) {
+
+            setError(error)
+            console.log(error)
+
+        } finally {
+
+            setLoading(false)
+
+        }
+
     }
 
     return (
@@ -28,7 +94,7 @@ const Test = () => {
                 <div className='flex flex-col bg-white shadow rounded-md w-full'>
                     <div className='p-10'>
                         <span className='text-lg font-bold'># {questionIndex + 1}</span>
-                        <Question question={test?.test?.questions[questionIndex]} />
+                        <Question question={questions[questionIndex]?.question} answer={answer} handleAnswer={handleAnswer} />
                     </div>
                     <div className='flex justify-between mx-10 mb-5'>
                         <button className='bg-blue-900 text-white py-1 px-5 rounded'
@@ -39,7 +105,7 @@ const Test = () => {
                         >Back</button>
                         <button className='bg-blue-900 text-white py-1 px-5 rounded'
                             onClick={() => {
-                                if (questionIndex < test?.test?.questions.length - 1)
+                                if (questionIndex < questions.length - 1)
                                     setQuestionIndex(questionIndex + 1)
                             }}
                         >Next</button>
@@ -52,14 +118,27 @@ const Test = () => {
                         </div>
                         <div className='flex flex-wrap'>
                             {
-                                test?.test?.questions.map((_, index) => {
-                                    return <button className='rounded-full border-2 w-8 h-8 bg-white shadow m-2' key={index}
-                                        onClick={() => setQuestionIndex(index)}
-                                    >{index + 1}</button>
+                                questions.map((question, index) => {
+                                    return question?.answer.length === 0 ?
+                                        <button className='rounded-full border-2 w-8 h-8 bg-white shadow m-2' key={index}
+                                            onClick={() => setQuestionIndex(index)}
+                                        >{index + 1}
+                                        </button> :
+                                        <button className='rounded-full border-2 w-8 h-8 bg-white border-blue-900 shadow m-2' key={index}
+                                            onClick={() => setQuestionIndex(index)}
+                                        >{index + 1}
+                                        </button>
                                 })
                             }
                         </div>
-                        <button className='bg-blue-900 text-white rounded py-1'>Finish</button>
+                        <button className='bg-blue-900 text-white rounded py-1' onClick={submitAnswer}>
+                            {
+                                loading ?
+                                    <RiLoader4Line className='font-extrabold animate-spin' size={25} />
+                                    :
+                                    <span>Finish</span>
+                            }
+                        </button>
                     </div>
                 </div>
             </div>
