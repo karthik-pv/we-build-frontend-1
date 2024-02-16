@@ -98,16 +98,11 @@ const Test = () => {
                         Once submitted, you will not be able to make any changes. Please <span className='font-bold'>review</span> your answers before confirming.
                     </p>
                 </div>
-                <button className='bg-red-600 text-white rounded py-1 w-60 flex items-center justify-center' onClick={() => {
-                    submitAnswer()
+                <button className='bg-red-600 text-white rounded py-1 w-60 flex items-center justify-center' onClick={async () => {
+                    await submitAnswer()
                     close()
                 }}>
-                    {
-                        loading ?
-                            <RiLoader4Line className='font-extrabold animate-spin' size={25} />
-                            :
-                            <span>Done</span>
-                    }
+                    Done
                 </button>
             </div>
         )
@@ -149,7 +144,7 @@ const Test = () => {
                             {
                                 questions.map((question, index) => {
                                     return <button
-                                        className={`rounded-full border-2 w-8 h-8 bg-white m-2 ${question?.answer.length === 0 && 'border-blue-900'} ${index === questionIndex && 'shadow-md bg-blue-200'}`}
+                                        className={`rounded-full border-2 w-8 h-8 m-2 ${question?.answer.length !== 0 && 'border-blue-900'} ${index === questionIndex && 'shadow-md bg-blue-900 text-white'}`}
                                         key={index}
                                         onClick={() => setQuestionIndex(index)}>{index + 1}</button>
                                 })
@@ -158,7 +153,12 @@ const Test = () => {
                         <button className='bg-blue-900 text-white rounded py-1' onClick={() => {
                             open(<TestConformationPrompt />)
                         }}>
-                            Finish
+                            {
+                                loading ?
+                                    <RiLoader4Line className='font-extrabold animate-spin' size={25} />
+                                    :
+                                    <span>Finish</span>
+                            }
                         </button>
                     </div>
                 </div>
