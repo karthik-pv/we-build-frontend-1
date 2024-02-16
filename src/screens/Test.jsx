@@ -7,7 +7,6 @@ import { TEST_FINISH } from '../api/test'
 import { RiLoader4Line } from 'react-icons/ri'
 import toast from 'react-hot-toast'
 import ModalContext from '../context/ModalContext'
-import TestConformationPrompt from '../components/TestConformationPrompt'
 
 const Test = () => {
 
@@ -23,7 +22,7 @@ const Test = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const { open } = useContext(ModalContext)
+    const { open, close } = useContext(ModalContext)
 
     useEffect(() => {
         const testToken = cookie.TestToken
@@ -88,6 +87,32 @@ const Test = () => {
 
     }
 
+    const TestConformationPrompt = () => {
+        return (
+            <div className='flex flex-col gap-5 items-center mt-5'>
+                <div>
+                    <p>
+                        Are you sure you want to <span className='font-bold'>submit</span> your test?
+                    </p>
+                    <p>
+                        Once submitted, you will not be able to make any changes. Please <span className='font-bold'>review</span> your answers before confirming.
+                    </p>
+                </div>
+                <button className='bg-red-600 text-white rounded py-1 w-60 flex items-center justify-center' onClick={() => {
+                    submitAnswer()
+                    close()
+                }}>
+                    {
+                        loading ?
+                            <RiLoader4Line className='font-extrabold animate-spin' size={25} />
+                            :
+                            <span>Done</span>
+                    }
+                </button>
+            </div>
+        )
+    }
+
     return (
         <div className='p-5'>
             <div className='flex items-center justify-between font-extrabold text-2xl'>
@@ -130,15 +155,10 @@ const Test = () => {
                                 })
                             }
                         </div>
-                        <button className='bg-blue-900 text-white rounded py-1 flex items-center justify-center' onClick={() => {
-                            open(<TestConformationPrompt submitAnswer={submitAnswer} />)
+                        <button className='bg-blue-900 text-white rounded py-1' onClick={() => {
+                            open(<TestConformationPrompt submitAnswer={submitAnswer} loading={loading} />)
                         }}>
-                            {
-                                loading ?
-                                    <RiLoader4Line className='font-extrabold animate-spin' size={25} />
-                                    :
-                                    <span>Finish</span>
-                            }
+                            Finish
                         </button>
                     </div>
                 </div>
