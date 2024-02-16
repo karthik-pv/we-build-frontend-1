@@ -156,7 +156,7 @@ const Test = () => {
                             }
                         </div>
                         <button className='bg-blue-900 text-white rounded py-1' onClick={() => {
-                            open(<TestConformationPrompt submitAnswer={submitAnswer} loading={loading} />)
+                            open(<TestConformationPrompt />)
                         }}>
                             Finish
                         </button>
