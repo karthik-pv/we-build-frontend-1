@@ -10,6 +10,10 @@ import { Toaster } from 'react-hot-toast'
 import AuthContext from './context/AuthContext'
 import Ask from './screens/Ask'
 import Modal from './components/Modal'
+import Question from './screens/Question'
+import Questions from './screens/Questions'
+import CreateTest from './screens/CreateTest'
+import ProfessorDash from './screens/ProfessorDash'
 
 const App = () => {
 
@@ -25,6 +29,10 @@ const App = () => {
         <Route path='/history/:id' element={authToken ? <Answer /> : <Navigate to='/login' />} />
         <Route path='/ask' element={authToken ? <Ask /> : <Navigate to='/login' />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/question' element={<Question />} />
+        <Route path='/questions' element={<Questions />} />
+        <Route path='/createTest' element={<CreateTest />} />
+        <Route path='/professorDash' element={<ProfessorDash />}/>
       </Routes>
       <Toaster position='bottom-center' />
       <Modal />

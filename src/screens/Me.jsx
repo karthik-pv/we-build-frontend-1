@@ -90,7 +90,7 @@ const Dashboard = () => {
                                             <td className='p-2'>{student?.branch}</td>
                                         </tr>
                                         <tr>
-                                            <th className='p-2'>Semister</th>
+                                            <th className='p-2'>Semester</th>
                                             <td className='p-2'>{student?.sem}</td>
                                         </tr>
                                         <tr>
